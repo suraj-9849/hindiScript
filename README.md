@@ -1,44 +1,51 @@
 # HindiScript
 
-A programming language in Hindi! Write code using Hindi keywords and syntax.
+A programming language designed for Hindi speakers! HindiScript lets you write code using Hindi keywords and syntax, making programming more accessible and intuitive.
 
-## Keywords
+## HindiScript Keywords
 
-| Hindi         | English  | Description           |
-| ------------- | -------- | --------------------- |
-| `ye`          | var/let  | Variable declaration  |
-| `bol`         | print    | Print to console      |
-| `agar`        | if       | Conditional statement |
-| `ya`          | else     | Else statement        |
-| `ya fir`      | else if  | Else if statement     |
-| `firseKaro`   | function | Function declaration  |
-| `jabtak`      | while    | While loop            |
-| `dohraye`     | repeat   | Infinite loop         |
-| `roko`        | break    | Break statement       |
-| `aage badho`  | continue | Continue statement    |
-| `wapas bhejo` | return   | Return statement      |
+| Hindi         | English Equivalent | Description             |
+| ------------- | ----------------- | ----------------------- |
+| `ye`          | var/let           | Declare a variable      |
+| `bol`         | print             | Output to console       |
+| `agar`        | if                | Conditional statement   |
+| `ya`          | else              | Alternate condition     |
+| `ya fir`      | else if           | Additional condition    |
+| `firseKaro`   | function          | Define a function       |
+| `jabtak`      | while             | While loop              |
+| `dohraye`     | repeat            | Infinite loop           |
+| `roko`        | break             | Exit loop/statement     |
+| `aage badho`  | continue          | Skip to next iteration  |
+| `wapas bhejo` | return            | Return from function    |
 
-### Installation:
+## Getting Started
+
+### Installation
 
 ```bash
 git clone https://github.com/suraj-9849/hindiLang.git
 cd hindiLang
-
 go build -o hlang ./cmd/main.go
 ```
 
-## Usage
-
-### Running a HindiScript Program
+### Running HindiScript Programs
 
 ```bash
 ./hlang.exe run main.hlang
 ```
 
-### Command Options
+### Command Line Options
 
 ```bash
 ./hlang.exe run <file.hlang>
 ./hlang.exe version
 ./hlang.exe help
 ```
+
+---
+
+**Inspired by:**  
+- [The Programming Language Pipeline](https://www.freecodecamp.org/news/the-programming-language-pipeline-91d3f449c919/)  
+- [Building Your Own Programming Language from Scratch](https://hackernoon.com/building-your-own-programming-language-from-scratch)  
+- [go/token](https://pkg.go.dev/go/token)  
+- [go/ast](https://pkg.go.dev/go/ast)
