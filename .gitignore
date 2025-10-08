@@ -1,0 +1,31 @@
+# Binaries
+hlang
+hlang.exe
+*.exe
+*.out
+
+# Build directory
+build/
+
+# Test files
+test*.hlang
+test*.go
+debug*.go
+
+# Go
+*.mod
+*.sum
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

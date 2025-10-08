@@ -3,50 +3,67 @@ package main
 import (
 	"fmt"
 	"github.com/suraj-9849/hindiLang.git/config/functions"
-	"strings"
+	"os"
+	"path/filepath"
 )
 
 func main() {
-	runTest(`ye name = 1234`)
-	runTest(`
-		ye count = 0
-		jabtak count < 10 {
-			bol(count)
-			count = count + 1
+	if len(os.Args) < 2 {
+		printUsage()
+		os.Exit(1)
+	}
+
+	command := os.Args[1]
+
+	switch command {
+	case "run":
+		if len(os.Args) < 3 {
+			fmt.Println("Error: Please provide a .hlang file to run")
+			fmt.Println("Usage: ./hlang.exe run <filename.hlang>")
+			os.Exit(1)
 		}
-	`)
-	runTest(`
-		dohraye {
-			bol("hindiScript")
-			roko
-		}
-	`)
-	runTest(`
-		firseKaro add(a, b): number {
-			wapas bhejo a + b
-		}
-	`)
-	runTest(`
-		ye i = 0
-		jabtak i < 5 {
-			i = i + 1
-			aage badho
-			bol(i)
-		}
-	`)
+		runFile(os.Args[2])
+	case "version", "-v", "--version":
+		fmt.Println("HindiScript v1.0.0")
+		fmt.Println("A programming language in Hindi")
+	case "help", "-h", "--help":
+		printUsage()
+	default:
+		fmt.Printf("Unknown command: %s\n", command)
+		printUsage()
+		os.Exit(1)
+	}
 }
 
-func runTest(code string) {
-	code = strings.TrimSpace(code)
-	tokens := functions.Lexer(code)
-	fmt.Printf("Tokens: %v\n", tokens)
-	ast := functions.Parser(tokens)
-	fmt.Printf("AST Body Length: %d\n", len(ast.Body))
-	if len(ast.Body) > 0 {
-		fmt.Println("AST Nodes:")
-		for i, node := range ast.Body {
-			fmt.Printf("  [%d] %s\n", i, node.NodeType())
-		}
+func runFile(filename string) {
+	if _, err := os.Stat(filename); os.IsNotExist(err) {
+		fmt.Printf("Error: File '%s' not found\n", filename)
+		os.Exit(1)
 	}
+
+	ext := filepath.Ext(filename)
+	if ext != ".hlang" {
+		fmt.Printf("Warning: File '%s' does not have .hlang extension\n", filename)
+	}
+
+	code, err := os.ReadFile(filename)
+	if err != nil {
+		fmt.Printf("Error reading file: %v\n", err)
+		os.Exit(1)
+	}
+
+	err = functions.Run(string(code))
+	if err != nil {
+		os.Exit(1)
+	}
+}
+
+func printUsage() {
+	fmt.Println("HindiScript - A programming language in Hindi")
+	fmt.Println()
+	fmt.Println("Usage:")
+	fmt.Println("./hlang.exe run <filename.hlang>    Run a .hlang file")
+	fmt.Println("./hlang.exe version                 Show version information")
+	fmt.Println("./hlang.exe help                    Show this help message")
 	fmt.Println()
 }

@@ -1,0 +1,23 @@
+firseKaro add(a, b): number {
+	wapas bhejo a + b
+}
+
+firseKaro multiply(x, y): number {
+	wapas bhejo x * y
+}
+
+firseKaro greet(name): string {
+	bol("Namaste")
+	bol(name)
+	wapas bhejo "Hello Baburao"
+}
+
+ye sum = add(10, 20)
+bol("10+20=")
+bol(sum)
+
+ye product = multiply(5, 6)
+bol("5*6=")
+bol(product)
+
+greet("Suraj")

@@ -283,7 +283,6 @@ func isWhitespace(r rune) bool {
 func isKeyword(word string) bool {
 	keywords := map[string]bool{
 		"ye":          true, // var/const
-		"bol":         true, // tell(println)
 		"agar":        true, // if
 		"ya":          true,
 		"fir":         true,

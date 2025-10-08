@@ -1,0 +1,29 @@
+// While loop example (jabtak)
+bol("1 se 10 tak numbers:")
+ye count = 1
+jabtak count <= 10 {
+	bol(count)
+	count = count + 1
+}
+
+// Repeat loop with break (dohraye with roko)
+bol("Infinite loop with break:")
+ye i = 0
+dohraye {
+	bol(i)
+	i = i + 1
+	agar i >= 5 {
+		roko
+	}
+}
+
+// Loop with continue (aage badho)
+bol("Even numbers only:")
+ye j = 0
+jabtak j < 10 {
+	j = j + 1
+	agar j % 2 != 0 {
+		aage badho
+	}
+	bol(j)
+}

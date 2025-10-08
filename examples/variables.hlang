@@ -1,0 +1,7 @@
+// Variable declaration and operations
+ye naam = "Baburao"
+ye umar = 20
+bol("Naam:")
+bol(naam)
+bol("Umar:")
+bol(umar)

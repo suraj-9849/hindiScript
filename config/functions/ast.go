@@ -151,16 +151,64 @@ func (p *ParserState) expect(tokenType, tokenValue string) bool {
 	return true
 }
 
-func isOperator(value string) bool {
-	operators := map[string]bool{
-		"+": true, "-": true, "*": true, "/": true, "%": true,
-		"==": true, "!=": true, "<": true, ">": true, "<=": true, ">=": true,
-		"&&": true, "||": true, "=": true,
+func getPrecedence(op string) int {
+	switch op {
+	case "||":
+		return 1
+	case "&&":
+		return 2
+	case "==", "!=":
+		return 3
+	case "<", ">", "<=", ">=":
+		return 4
+	case "+", "-":
+		return 5
+	case "*", "/", "%":
+		return 6
+	default:
+		return 0
 	}
-	return operators[value]
 }
 
 func (p *ParserState) parseExpression() Node {
+	return p.parseBinaryExpression(0)
+}
+
+func (p *ParserState) parseBinaryExpression(minPrec int) Node {
+	left := p.parsePrimary()
+	if left == nil {
+		return nil
+	}
+
+	for {
+		token := p.current()
+		if token == nil || token["Type"] != "OPERATOR" || token["Value"] == "=" {
+			break
+		}
+
+		op := token["Value"]
+		prec := getPrecedence(op)
+		if prec < minPrec {
+			break
+		}
+
+		p.advance()
+		right := p.parseBinaryExpression(prec + 1)
+		if right == nil {
+			return nil
+		}
+
+		left = &BinaryExpression{
+			Operator: op,
+			Left:     left,
+			Right:    right,
+		}
+	}
+
+	return left
+}
+
+func (p *ParserState) parsePrimary() Node {
 	if p.position >= p.length {
 		return nil
 	}
@@ -187,18 +235,15 @@ func (p *ParserState) parseExpression() Node {
 		return &Identifier{Name: name}
 	}
 
-	if token["Type"] == "OPERATOR" && isOperator(token["Value"]) {
-		op := token["Value"]
+	if token["Type"] == "PAREN" && token["Value"] == "(" {
 		p.advance()
-		left := p.parseExpression()
-		right := p.parseExpression()
-		return &BinaryExpression{
-			Operator: op,
-			Left:     left,
-			Right:    right,
+		expr := p.parseExpression()
+		if p.expect("PAREN", ")") {
+			p.advance()
 		}
+		return expr
 	}
-	p.advance()
+
 	return nil
 }
 
