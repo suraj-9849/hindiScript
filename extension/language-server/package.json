@@ -1,0 +1,18 @@
+{
+  "name": "hlang-language-server",
+  "version": "0.1.0",
+  "description": "Language server for HLang",
+  "main": "server.js",
+  "scripts": {
+    "compile": "tsc -b",
+    "watch": "tsc -b -w"
+  },
+  "dependencies": {
+    "vscode-languageserver": "^8.1.0",
+    "vscode-languageserver-textdocument": "^1.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}

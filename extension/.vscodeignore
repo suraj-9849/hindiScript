@@ -1,0 +1,9 @@
+.vscode/**
+.vscode-test/**
+client/src/**
+language-server/*.ts
+**/*.map
+.gitignore
+tsconfig.json
+**/tsconfig.json
+**/.eslintrc.json

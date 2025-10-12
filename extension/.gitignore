@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+client/node_modules/
+language-server/node_modules/
+
+# Compiled output
+out/
+client/out/
+language-server/out/
+*.js
+*.js.map
+
+# VSCode extension
+*.vsix
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+.vscode-test/
