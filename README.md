@@ -25,13 +25,13 @@ A programming language designed for Hindi speakers! HindiScript lets you write c
 ```bash
 git clone https://github.com/suraj-9849/hindiLang.git
 cd hindiLang
-go build -o hlang ./cmd/main.go
+go build -o hlang.exe ./cmd/main.go
 ```
 
 ### Running HindiScript Programs
 
 ```bash
-./hlang.exe run main.hlang
+./hlang.exe run examples/functions.hlang
 ```
 
 ### Command Line Options
