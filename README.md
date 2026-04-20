@@ -23,8 +23,8 @@ A programming language designed for Hindi speakers! HindiScript lets you write c
 ### Installation
 
 ```bash
-git clone https://github.com/suraj-9849/hindiLang.git
-cd hindiLang
+git clone https://github.com/suraj-9849/hindiScript.git
+cd hindiScript
 go build -o hlang.exe ./cmd/main.go
 ```
 
